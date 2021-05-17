@@ -16,9 +16,11 @@ body {
   height: auto;
   text-align: center;
   border-radius: 5px;
-  background: white;
+  width: 700px;
+  min-height: 700px;
   justify-self: center;
   align-self: center;
+  background-color: white;
 }
 
 input {
@@ -38,6 +40,8 @@ input {
   border: 1px solid black;
   height: 575px;
   width: 575px;
+  margin-left: 60px;
+  background-color: "white";
 }
 
 .grid-item {
@@ -49,8 +53,7 @@ input {
   cursor: pointer;
   border: none;
   height: 40px;
-  width: 100px;
-  margin-left: 2px;
+  margin-left: 20px;
   border-radius: 5px;
   font-weight: 600;
   font-size: 15px;

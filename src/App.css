@@ -17,10 +17,10 @@ body {
   text-align: center;
   border-radius: 5px;
   width: 700px;
-  min-height: 700px;
+  height: 750px;
   justify-self: center;
   align-self: center;
-  background-color: white;
+  background: linear-gradient(to right, #16bffd, #cb3066);
 }
 
 input {
@@ -34,10 +34,34 @@ input {
   border-radius: 5px;
 }
 
+.button {
+  background-image: linear-gradient(to right, #ff0084 0%, #33001b 55%, #ff0084 100%)
+}
+
+.button {
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 10px #33001b;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 15px;
+  margin-left: 20px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-position: right center;
+  color: #fff;
+}
+
 .container {
   margin-top: 25px;
   margin-right: 40px;
-  border: 1px solid black;
   height: 575px;
   width: 575px;
   margin-left: 60px;
@@ -46,16 +70,5 @@ input {
 
 .grid-item {
   border: 1px solid rgba(0, 0, 0, 0.8);
-}
-
-.buttonsApp button {
-  cursor: pointer;
-  border: none;
-  height: 40px;
-  margin-left: 20px;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 15px;
-  background-color: #24a0ed;
-  color: white;
+  background-color: white;
 }

@@ -16,11 +16,20 @@ const Popup = (props) => {
         }
     }
 
+    const changeTriggerCancel = () => {
+        props.setTrigger(false);
+        setError("")
+    }
+
     const input = () => {
         if (inputNumber >= 16 && inputNumber <= 100) {
             props.addingSquers(inputNumber);
         }
     }
+    const inputCancel = () => {
+        props.addingCancel(20);
+    }
+
 
     return (props.trigger) ? (
         <div className="popup">
@@ -31,7 +40,7 @@ const Popup = (props) => {
                 <input id="input" onChange={onChangeInput} type="number" placeholder="Please enter number..."></input>
                 <div className="buttonsPopup">
                     <button className="ok-btn" onClick={() => { changeTrigger(); input() }}>Ok</button>
-                    <button className="close-btn" onClick={changeTrigger}>Close</button>
+                    <button className="close-btn" onClick={() => { changeTriggerCancel(); inputCancel() }}>Close</button>
                 </div>
             </div>
         </div >

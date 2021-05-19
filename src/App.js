@@ -7,10 +7,26 @@ import Squere from "./components/Squere"
 
 
 const App = () => {
-  const [dajBroj, setDajBroj] = useState(0);
+  const [dajBroj, setDajBroj] = useState(20);
 
-  const [styleContainer, setStyleContainer] = useState({});
-  const [squers, setSquers] = useState([]);
+  const [styleContainer, setStyleContainer] = useState({ display: "grid", gridTemplateColumns: 'repeat(' + dajBroj + ', 0fr)', gridTemplateRows: 'repeat(' + dajBroj + ', 0fr)' });
+
+  const [squers, setSquers] = useState([1]);
+
+  if (squers.length === 1) {
+    squers.pop();
+    for (var i = 0; i < dajBroj * dajBroj; i++) {
+      squers.push(i);
+    }
+  }
+
+  const cancel = (numberSquers) => {
+    setDajBroj(numberSquers)
+    setStyleContainer({ display: "grid", gridTemplateColumns: 'repeat(' + numberSquers + ', 0fr)', gridTemplateRows: 'repeat(' + numberSquers + ', 0fr)' });
+    for (var i = 0; i < numberSquers * numberSquers; i++) {
+      squers.push(i);
+    }
+  }
 
   const adding = (numberSquers) => {
     setDajBroj(numberSquers);
@@ -24,22 +40,34 @@ const App = () => {
   const [buttonPopup, setButtonPopup] = useState(false);
 
   const reset = () => {
+    setSquers([]);
     setBlack(false);
     setRandomColor(false);
-    setSquers([]);
   }
+
+  var button = document.querySelector("#clear");
+  if (button !== null) {
+    button.addEventListener("click", function () {
+      var squeres = document.querySelectorAll("#gridItem");
+      for (var i = 0; i < squeres.length; i++) {
+        squeres[i].style.backgroundColor = "white"
+      }
+    });
+  }
+
 
   return (
     <div>
-      <Popup trigger={buttonPopup} setTrigger={setButtonPopup} addingSquers={adding} >
+      <Popup trigger={buttonPopup} setTrigger={setButtonPopup} addingSquers={adding} addingCancel={cancel}>
       </Popup>
       <div className="parent">
         <div className="child">
           <div className="buttonsApp">
-            <button onClick={() => { setButtonPopup(true); reset() }}>Reset game</button>
-            <button onClick={() => { setBlack(true); setRandomColor(false) }}>Black</button>
-            <button onClick={() => { setBlack(false); setRandomColor(true) }}>Random Color</button>
-            <button id="clear" onClick={() => { setBlack(false); setRandomColor(false) }}>White</button>
+            <h2 style={{ fontStyle: "italic", color: "white" }}>Etch-a-Sketch</h2>
+            <button className="button" onClick={() => { setButtonPopup(true); reset() }}>Reset Board</button>
+            <button className="button" onClick={() => { setBlack(true); setRandomColor(false) }}>Black</button>
+            <button className="button" onClick={() => { setBlack(false); setRandomColor(true) }}>Random Color</button>
+            <button className="button" id="clear" onClick={() => { setBlack(false); setRandomColor(false); }}>Clear Board</button>
           </div>
           <Squere noOfSquers={dajBroj} styleContainer={styleContainer} black={black} randomColor={randomColor} squers={squers} />
         </div>
